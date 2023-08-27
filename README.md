@@ -1,1 +1,3 @@
-# A cli tool made for pinging multiple times.
+# A cli tool made for pinging http endpoints.
+
+*This is a personal tool so don't expect excellent maintenence.
