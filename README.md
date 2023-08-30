@@ -5,14 +5,14 @@
 ## How to install
 
 1. copy the git repo \
-```bash
+```console
  git clone https://github.com/dorian3343/CrabPing
 ```
 3. Build it with cargo build --release.
 
 4. On linux, find the binary in target/release.
 - Add it to your path \
-```bash
+```console
  sudo cp CrabPing /usr/local/bin/
 ```
 
@@ -20,14 +20,14 @@
 
 ## How to use
 
-```bash
+```console
  CrabPing [HttpAdress] [Amount]
 ``` \
 -CrabPing is the name of the cli \
 -HttpAdress is the address you want to ping \
 -Amount is how many pings you want to send, current limit is 200. 
 
-```bash
+```console
  CrabPing [HttpAdress]
 ``` \
 -CrabPing is the name of the cli \
