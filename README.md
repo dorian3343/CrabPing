@@ -22,14 +22,14 @@
 
 ```console
  CrabPing [HttpAdress] [Amount]
-``` \
+```
 -CrabPing is the name of the cli \
 -HttpAdress is the address you want to ping \
 -Amount is how many pings you want to send, current limit is 200. 
 
 ```console
  CrabPing [HttpAdress]
-``` \
+``` 
 -CrabPing is the name of the cli \
 -HttpAdress is the adress you want to ping
 
