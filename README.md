@@ -4,14 +4,14 @@
 
 ## How to install
 
-1. copy the git repo \
+1. copy the git repo 
 ```console
  git clone https://github.com/dorian3343/CrabPing
 ```
 3. Build it with cargo build --release.
 
 4. On linux, find the binary in target/release.
-- Add it to your path \
+- Add it to your path 
 ```console
  sudo cp CrabPing /usr/local/bin/
 ```
@@ -32,3 +32,9 @@
 ``` \
 -CrabPing is the name of the cli \
 -HttpAdress is the adress you want to ping
+
+## Example
+
+```console
+CrabPing https://dummyjson.com/test 5
+```
