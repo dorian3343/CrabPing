@@ -35,11 +35,12 @@ async fn send_req(adr: &str, id: &u32) -> Result<ReqObj, Box<dyn std::error::Err
     Ok(obj)
 }
 
+
+//benchmark caluclation
 fn calculate_average(vec: &Vec<i64>) -> f64 {
     let sum: i64 = vec.iter().sum();
     let count = vec.len() as f64;
     let average = sum as f64 / count;
-    
     average
 }
 
@@ -56,18 +57,21 @@ async fn main() {
         println!("Running just 'CrabPing' shows this help menu.");
         println!("[HttpReq]: The endpoint you want to hit.");
         println!("[Amount]: How many requests you want to send (max: 200).");
+        println!("=====================================================");
+        println!("Source Code: https://github.com/dorian3343/CrabPing");
+        println!("Made by: Dorian Kalaczynski");
+        println!("=====================================================");
         },
         2 => {
+            //if only one request
             let request = send_req(&args[1].to_string(),&0).await.unwrap();
             println!("Id: [{}]\nStatus: [{}]\nContents: [{}]\nBenchmark: [{} ms]",request.id,
                      request.status,
                      request.contents,
                      request.benchmark,
                      );
-
         },
         3 => { if args[2].parse::<u32>().is_ok(){
-                //todo
                 if args[2].parse::<u32>().unwrap() < 1 {
                     println!("Error! Minimum requests is 1");
                 }else if args[2].parse::<u32>().unwrap() > 200 {
