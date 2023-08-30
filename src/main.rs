@@ -1,10 +1,8 @@
 use std::env;
 use chrono::{Utc, DateTime, Duration};
-use hyper::{Client, Uri, body::to_bytes, http::Uri as HyperUri};
+use hyper::{Client, body::to_bytes, http::Uri as HyperUri};
 use hyper_tls::HttpsConnector;
-use tokio::io::AsyncReadExt;
 use std::sync::mpsc;
-use tokio::runtime;
 
 #[derive(Debug)]
 struct ReqObj {
@@ -51,11 +49,13 @@ async fn main() {
     match args.len() {
         1 => {
             // Display help menu
-            println!("#Welcome to CrabPing! A endpoint tester made in rust!\n============================");
-            println!("#CrabPing [HttpReq] [Amount]\n============================");
-            println!("#Running just CrabPing shows the help menu that you're using");
-            println!("#[HttpReq] this is the endpoint you want to hit");
-            println!("#[Amount] how many requests you want to send, max is 200");
+        println!("Welcome to CrabPing! An endpoint tester made in Rust!");
+        println!("=====================================================");
+        println!("Usage: crab_ping [HttpReq] [Amount]");
+        println!("------------------------------------");
+        println!("Running just 'crab_ping' shows this help menu.");
+        println!("[HttpReq]: The endpoint you want to hit.");
+        println!("[Amount]: How many requests you want to send (max: 200).");
         },
         2 => {
             let request = send_req(&args[1].to_string(),&0).await.unwrap();
