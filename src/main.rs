@@ -4,6 +4,7 @@ use hyper::{Client, body::to_bytes, http::Uri as HyperUri};
 use hyper_tls::HttpsConnector;
 use std::sync::mpsc;
 
+#[derive(PartialEq)]
 #[derive(Debug)]
 struct ReqObj {
     benchmark: i64,
@@ -12,10 +13,24 @@ struct ReqObj {
     contents: String,
 }
 
+impl Default for ReqObj {
+    fn default() -> Self{
+        ReqObj {
+            benchmark: 0,
+            id: 0,
+            status: String::default(),
+            contents: String::default(),
+        }
+    }
+}
+
 async fn send_req(adr: &str, id: &u32) -> Result<ReqObj, Box<dyn std::error::Error + Send + Sync>> {
     let https = HttpsConnector::new();
     let client = Client::builder().build::<_, hyper::Body>(https);
-    let uri = adr.parse::<HyperUri>()?; // Use HyperUri instead of Uri
+    let uri = match adr.parse::<HyperUri>(){
+            Ok(val) => val,
+            Err(_err) => {panic!("Failed to parse url address")},
+    };
     let start: DateTime<Utc> = Utc::now();
     let res = client.get(uri.clone()).await?;
     let end: DateTime<Utc> = Utc::now();
@@ -64,12 +79,22 @@ async fn main() {
         },
         2 => {
             //if only one request
-            let request = send_req(&args[1].to_string(),&0).await.unwrap();
+            let request = match send_req(&args[1].to_string(),&0).await {
+                Ok(val) => val,
+                Err(_) => {
+                    ReqObj::default()
+                },
+            };
+
+            if request == ReqObj::default(){
+                println!("Error! URL parse failed")
+            }else{
             println!("Id: [{}]\nStatus: [{}]\nContents: [{}]\nBenchmark: [{} ms]",request.id,
                      request.status,
                      request.contents,
                      request.benchmark,
                      );
+            }
         },
         3 => { if args[2].parse::<u32>().is_ok(){
                 if args[2].parse::<u32>().unwrap() < 1 {
