@@ -53,7 +53,7 @@ async fn main() {
         println!("=====================================================");
         println!("Usage: CrabPing [HttpReq] [Amount]");
         println!("------------------------------------");
-        println!("Running just 'crab_ping' shows this help menu.");
+        println!("Running just 'CrabPing' shows this help menu.");
         println!("[HttpReq]: The endpoint you want to hit.");
         println!("[Amount]: How many requests you want to send (max: 200).");
         },
