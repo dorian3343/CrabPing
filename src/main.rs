@@ -51,7 +51,7 @@ async fn main() {
             // Display help menu
         println!("Welcome to CrabPing! An endpoint tester made in Rust!");
         println!("=====================================================");
-        println!("Usage: crab_ping [HttpReq] [Amount]");
+        println!("Usage: CrabPing [HttpReq] [Amount]");
         println!("------------------------------------");
         println!("Running just 'crab_ping' shows this help menu.");
         println!("[HttpReq]: The endpoint you want to hit.");
