@@ -21,6 +21,6 @@
 -HttpAdress is the address you want to ping \
 -Amount is how many pings you want to send, current limit is 200. 
 
-```bash CrabPing [HttpAdress]```
--CrabPing is the name of the cli
+```bash CrabPing [HttpAdress]``` \
+-CrabPing is the name of the cli \
 -HttpAdress is the adress you want to ping
