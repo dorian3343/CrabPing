@@ -3,7 +3,7 @@
 *This is a personal tool so don't expect excellent maintenence.
 *Currently no support for payloads
 
-## How to install
+## How to install 1/2 
 
 1. copy the git repo 
 ```console
@@ -18,6 +18,9 @@
 ```
 
 4. On windows, idk I don't use windows :P 
+
+## How to install 2/2
+1. Instead of building the project yourself use the prebuilt binary
 
 ## How to use
 
