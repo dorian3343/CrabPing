@@ -1,3 +1,4 @@
+
 use std::env;
 use chrono::{Utc, DateTime, Duration};
 use hyper::{Client, body::to_bytes, http::Uri as HyperUri};
@@ -6,6 +7,15 @@ use std::sync::mpsc;
 
 #[derive(PartialEq)]
 #[derive(Debug)]
+
+/*
+ReqObj is a collection of data about the request:
+-benchmark: the time of the request in milliseconds
+-id: the id of the request
+-status: the http  status that the request returned
+-contents: what ever the body of the request returned
+*/
+
 struct ReqObj {
     benchmark: i64,
     id: u32,
@@ -82,6 +92,8 @@ async fn main() {
             let request = match send_req(&args[1].to_string(),&0).await {
                 Ok(val) => val,
                 Err(_) => {
+                //this part needs a revamp, however it basically creates a default object
+                //and matches it to check for errors
                     ReqObj::default()
                 },
             };
@@ -107,6 +119,7 @@ async fn main() {
                     for i in 0.. args[2].parse::<u32>().unwrap(){
                         let tx_clone = tx.clone();
                         let adr = args[1].clone();
+                        //create a new thread for every request to parralelize the requests
                         let handle = tokio::spawn(async move {
                             let adr_clone = adr.clone();
                             let request = send_req(&adr_clone,&i).await.unwrap();
@@ -115,6 +128,7 @@ async fn main() {
                         handles.push(handle);
                     }
                     let mut times = vec![];
+                    //wait for the reqs end
                     for _ in handles {
                         let catch = rx.recv().expect("Failed to send result");
                      println!("Id: [{}]\nStatus: [{}]\nContents: [{}]\nBenchmark:[{} ms]",
