@@ -20,7 +20,7 @@
 4. On windows, idk I don't use windows :P 
 
 ## How to install 2/2
-1. Instead of building the project yourself use the prebuilt binary
+1. Instead of building the project yourself use the prebuilt binary, for windows its the one with .exe
 
 ## How to use
 
